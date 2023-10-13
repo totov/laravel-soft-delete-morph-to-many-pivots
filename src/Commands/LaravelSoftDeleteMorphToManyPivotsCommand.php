@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Totov\LaravelSoftDeleteMorphToManyPivots\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LaravelSoftDeleteMorphToManyPivotsCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-soft-delete-morph-to-many-pivots';
 
     public $description = 'My command';
 

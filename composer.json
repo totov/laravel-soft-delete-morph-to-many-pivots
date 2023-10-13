@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "totov/laravel-soft-delete-morph-to-many-pivots",
+    "description": "Allow morphToMany relationship pivots to be soft deleted.",
     "keywords": [
-        ":vendor_name",
+        "totov",
         "laravel",
-        ":package_slug"
+        "laravel-soft-delete-morph-to-many-pivots"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/totov/laravel-soft-delete-morph-to-many-pivots",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Stephen Hamilton",
+            "email": "stephen@shtc.co.uk",
             "role": "Developer"
         }
     ],
@@ -35,19 +35,19 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "Totov\\LaravelSoftDeleteMorphToManyPivots\\": "src/",
+            "Totov\\LaravelSoftDeleteMorphToManyPivots\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/",
+            "Totov\\LaravelSoftDeleteMorphToManyPivots\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
     "scripts": {
         "post-autoload-dump": "@composer run prepare",
-        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "clear": "@php vendor/bin/testbench package:purge-laravel-soft-delete-morph-to-many-pivots --ansi",
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "build": [
             "@composer run prepare",
@@ -73,10 +73,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Totov\\LaravelSoftDeleteMorphToManyPivots\\LaravelSoftDeleteMorphToManyPivotsServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "LaravelSoftDeleteMorphToManyPivots": "Totov\\LaravelSoftDeleteMorphToManyPivots\\Facades\\LaravelSoftDeleteMorphToManyPivots"
             }
         }
     },
