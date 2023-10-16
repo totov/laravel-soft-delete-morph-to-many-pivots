@@ -2,35 +2,24 @@
 
 namespace Totov\LaravelSoftDeleteMorphToManyPivots\Tests;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Totov\LaravelSoftDeleteMorphToManyPivots\LaravelSoftDeleteMorphToManyPivotsServiceProvider;
+
+use function Orchestra\Testbench\workbench_path;
 
 class TestCase extends Orchestra
 {
-    protected function setUp(): void
+    protected function getPackageProviders($app): array
     {
-        parent::setUp();
-
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Totov\\LaravelSoftDeleteMorphToManyPivots\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );
+        return [];
     }
 
-    protected function getPackageProviders($app)
+    protected function defineDatabaseMigrations(): void
     {
-        return [
-            LaravelSoftDeleteMorphToManyPivotsServiceProvider::class,
-        ];
+        $this->loadMigrationsFrom(workbench_path('database/migrations'));
     }
 
-    public function getEnvironmentSetUp($app)
+    public function getEnvironmentSetUp($app): void
     {
         config()->set('database.default', 'testing');
-
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_laravel-soft-delete-morph-to-many-pivots_table.php.stub';
-        $migration->up();
-        */
     }
 }
