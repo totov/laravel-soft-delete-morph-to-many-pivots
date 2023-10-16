@@ -27,6 +27,7 @@ class MorphToManySoftDeletes extends MorphToMany
      * SoftDeletes pivot model.
      *
      * @return bool|null
+     *
      * @phpstan-ignore-next-line
      * */
     public function detach($ids = null, $touch = true): int
