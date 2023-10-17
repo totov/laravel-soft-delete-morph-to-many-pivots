@@ -35,8 +35,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Totov\\LaravelSoftDeleteMorphToManyPivots\\": "src/",
-            "Totov\\LaravelSoftDeleteMorphToManyPivots\\Database\\Factories\\": "database/factories/"
+            "Totov\\LaravelSoftDeleteMorphToManyPivots\\": "src/"
         }
     },
     "autoload-dev": {
@@ -68,16 +67,6 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "phpstan/extension-installer": true
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Totov\\LaravelSoftDeleteMorphToManyPivots\\LaravelSoftDeleteMorphToManyPivotsServiceProvider"
-            ],
-            "aliases": {
-                "LaravelSoftDeleteMorphToManyPivots": "Totov\\LaravelSoftDeleteMorphToManyPivots\\Facades\\LaravelSoftDeleteMorphToManyPivots"
-            }
         }
     },
     "minimum-stability": "dev",
