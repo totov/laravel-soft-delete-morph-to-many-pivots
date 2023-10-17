@@ -37,7 +37,7 @@ use Totov\LaravelSoftDeleteMorphToManyPivots\Traits\MorphToManySoftDeletesTrait;
 
 class UserType extends Model
 {
-use MorphToManySoftDeletesTrait;
+    use MorphToManySoftDeletesTrait;
 
     public function users(): MorphToManySoftDeletes
     {
