@@ -65,14 +65,14 @@ class MorphToManySoftDeletes extends MorphToMany
     {
         $query = $this->newPivotQuery();
 
-        if (!is_null($ids)) {
+        if (! is_null($ids)) {
             $ids = $this->parseIds($ids);
 
             if (empty($ids)) {
                 return 0;
             }
 
-            $query->whereIn($this->getQualifiedRelatedPivotKeyName(), (array)$ids);
+            $query->whereIn($this->getQualifiedRelatedPivotKeyName(), (array) $ids);
 
             $results = $query->update([
                 $this->qualifyPivotColumn('deleted_at') => now(),
