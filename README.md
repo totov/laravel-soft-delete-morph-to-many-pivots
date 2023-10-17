@@ -1,5 +1,53 @@
 # Allow morphToMany relationship pivots to be soft deleted.
 
+## Installation
+
+You can install the package via composer:
+
+```bash
+composer require totov/laravel-soft-delete-morph-to-many-pivots
+```
+
+## Usage
+
+Use the `MorphToManySoftDeletesTrait` trait along with the `morphToManySoft` function and which returns a `MorphToManySoftDeletes`
+
+```php
+use Illuminate\Database\Eloquent\Model;
+use Totov\LaravelSoftDeleteMorphToManyPivots\MorphToManySoftDeletes;
+use Totov\LaravelSoftDeleteMorphToManyPivots\Traits\MorphToManySoftDeletesTrait;
+
+class User extends Model
+{
+    use MorphToManySoftDeletesTrait;
+
+    public function user_types(): MorphToManySoftDeletes
+    {
+        return $this->morphToManySoft(UserType::class, 'types');
+    }
+}
+```
+
+On the morphed model, use the `morphedByManySoft` function:
+
+```php
+use Illuminate\Database\Eloquent\Model;
+use Totov\LaravelSoftDeleteMorphToManyPivots\MorphToManySoftDeletes;
+use Totov\LaravelSoftDeleteMorphToManyPivots\Traits\MorphToManySoftDeletesTrait;
+
+class UserType extends Model
+{
+use MorphToManySoftDeletesTrait;
+
+    public function users(): MorphToManySoftDeletes
+    {
+        return $this->morphedByManySoft(User::class, 'types');
+    }
+}
+```
+
+Ensure that your pivot table has a `deleted_at` column which can be used for the soft deleting.
+
 ## Testing
 
 ```bash
