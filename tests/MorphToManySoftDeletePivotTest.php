@@ -151,4 +151,16 @@ it('can soft delete and restore morphToMany relationship pivots', function () {
     expect($user->refresh()->user_types->count())->toBe(1);
 
     expect($secondUserType->refresh()->users->count())->toBe(1);
+
+    $typesOnlyTrashed = $user->user_types()->onlyTrashed()->get();
+
+    expect($typesOnlyTrashed->count())->toBe(4);
+
+    $typesWithTrashed = $user->user_types()->withTrashed()->get();
+
+    expect($typesWithTrashed->count())->toBe(5);
+
+    $typesWithoutTrashed = $user->user_types()->withTrashed(false)->get();
+
+    expect($typesWithoutTrashed->count())->toBe(1);
 });

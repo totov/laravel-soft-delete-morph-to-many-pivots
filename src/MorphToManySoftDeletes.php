@@ -13,11 +13,33 @@ class MorphToManySoftDeletes extends MorphToMany
     {
         parent::__construct(...func_get_args());
 
-        $query->withGlobalScope('soft_deletes', function (Builder $query) {
-            $query->whereNull(
+        $query->macro('withoutTrashed', function (Builder $builder) {
+            $builder->withGlobalScope('soft_deletes', function (Builder $builder) {
+                $builder->whereNull(
+                    $this->qualifyPivotColumn('deleted_at')
+                );
+            });
+
+            return $builder;
+        });
+
+        $query->macro('withTrashed', function (Builder $builder, bool $withTrashed = true) {
+            if (!$withTrashed) {
+                return $builder->withoutTrashed();
+            }
+
+            return $builder->withoutGlobalScope('soft_deletes');
+        });
+
+        $query->macro('onlyTrashed', function (Builder $builder) {
+            $builder->withoutGlobalScope('soft_deletes')->whereNotNull(
                 $this->qualifyPivotColumn('deleted_at')
             );
+
+            return $builder;
         });
+
+        $query->withoutTrashed();
     }
 
     public function newPivotStatement()
@@ -41,14 +63,14 @@ class MorphToManySoftDeletes extends MorphToMany
     {
         $query = $this->newPivotQuery();
 
-        if (! is_null($ids)) {
+        if (!is_null($ids)) {
             $ids = $this->parseIds($ids);
 
             if (empty($ids)) {
                 return 0;
             }
 
-            $query->whereIn($this->getQualifiedRelatedPivotKeyName(), (array) $ids);
+            $query->whereIn($this->getQualifiedRelatedPivotKeyName(), (array)$ids);
 
             $results = $query->update([
                 $this->qualifyPivotColumn('deleted_at') => now(),
