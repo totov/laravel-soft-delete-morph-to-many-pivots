@@ -25,6 +25,7 @@ class MorphToManySoftDeletes extends MorphToMany
 
         $query->macro('withTrashed', function (Builder $builder, bool $withTrashed = true) {
             if (!$withTrashed) {
+                /** @phpstan-ignore-next-line */
                 return $builder->withoutTrashed();
             }
 
@@ -39,6 +40,7 @@ class MorphToManySoftDeletes extends MorphToMany
             return $builder;
         });
 
+        /** @phpstan-ignore-next-line */
         $query->withoutTrashed();
     }
 
