@@ -18,6 +18,11 @@ class MorphToManySoftDeletes extends MorphToMany
         );
     }
 
+    public function newPivotStatement()
+    {
+        return $this->query->getQuery()->newQuery()->from($this->table)->whereNull($this->qualifyPivotColumn('deleted_at'));
+    }
+
     public function newPivotQuery()
     {
         return parent::newPivotQuery()->whereNull($this->qualifyPivotColumn('deleted_at'));
