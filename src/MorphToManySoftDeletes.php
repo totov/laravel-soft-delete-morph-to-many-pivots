@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
+/**
+ * @method Builder withoutTrashed()
+ * @method Builder withTrashed(bool $withTrashed = true)
+ * @method Builder onlyTrashed()
+ */
 class MorphToManySoftDeletes extends MorphToMany
 {
     public function __construct(Builder $query, Model $parent, $name, $table, $foreignPivotKey,
