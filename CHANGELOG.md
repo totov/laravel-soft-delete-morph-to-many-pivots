@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-soft-delete-morph-to-many-pivots` will be documented in this file.
 
+## Adds callback for soft deleting - 2023-10-17
+
+**Full Changelog**: https://github.com/totov/laravel-soft-delete-morph-to-many-pivots/compare/v1.0.6...v1.0.7
+
 ## Adds type hinting support for soft delete scopes - 2023-10-17
 
 **Full Changelog**: https://github.com/totov/laravel-soft-delete-morph-to-many-pivots/compare/v1.0.5...v1.0.6
