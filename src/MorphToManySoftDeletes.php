@@ -13,9 +13,11 @@ class MorphToManySoftDeletes extends MorphToMany
     {
         parent::__construct(...func_get_args());
 
-        $query->whereNull(
-            $this->qualifyPivotColumn('deleted_at')
-        );
+        $query->withGlobalScope('soft_deletes', function (Builder $query) {
+            $query->whereNull(
+                $this->qualifyPivotColumn('deleted_at')
+            );
+        });
     }
 
     public function newPivotStatement()
