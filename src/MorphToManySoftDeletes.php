@@ -13,6 +13,18 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  */
 class MorphToManySoftDeletes extends MorphToMany
 {
+    private static $deletedAtCallback = null;
+
+    public static function setDeletedAtCallback(callable $closure): void
+    {
+        self::$deletedAtCallback = $closure;
+    }
+
+    public static function resetDeletedAtCallback(): void
+    {
+        self::$deletedAtCallback = null;
+    }
+
     public function __construct(Builder $query, Model $parent, $name, $table, $foreignPivotKey,
         $relatedPivotKey, $parentKey, $relatedKey, $relationName = null, $inverse = false)
     {
@@ -79,8 +91,10 @@ class MorphToManySoftDeletes extends MorphToMany
 
             $query->whereIn($this->getQualifiedRelatedPivotKeyName(), (array) $ids);
 
+            $callback = self::$deletedAtCallback;
+
             $results = $query->update([
-                $this->qualifyPivotColumn('deleted_at') => now(),
+                $this->qualifyPivotColumn('deleted_at') => $callback ? $callback() : now(),
             ]);
         }
 

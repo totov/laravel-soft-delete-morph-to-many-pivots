@@ -163,4 +163,21 @@ it('can soft delete and restore morphToMany relationship pivots', function () {
     $typesWithoutTrashed = $user->user_types()->withTrashed(false)->get();
 
     expect($typesWithoutTrashed->count())->toBe(1);
+
+    MorphToManySoftDeletes::setDeletedAtCallback(static function () {
+        return now()->subWeek();
+    });
+
+    $user->user_types()->sync([]);
+
+    MorphToManySoftDeletes::resetDeletedAtCallback();
+
+    expect($user->refresh()->user_types->count())->toBe(0);
+
+    assertDatabaseHas('types', [
+        'user_type_id' => 2,
+        'types_id' => 1,
+        'types_type' => User::class,
+        'deleted_at' => now()->subWeek(),
+    ]);
 });
