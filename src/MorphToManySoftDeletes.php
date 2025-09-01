@@ -5,7 +5,6 @@ namespace Totov\LaravelSoftDeleteMorphToManyPivots;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Illuminate\Database\Query\JoinClause;
 
 /**
  * @method Builder withoutTrashed()
@@ -108,7 +107,6 @@ class MorphToManySoftDeletes extends MorphToMany
         return $results;
     }
 
-
     protected function performJoin($query = null)
     {
         $query = $query ?: $this->query;
@@ -129,7 +127,7 @@ class MorphToManySoftDeletes extends MorphToMany
         });
 
         $query->macro('withTrashed', function (Builder $builder, bool $withTrashed = true) {
-            if (!$withTrashed) {
+            if (! $withTrashed) {
                 /** @phpstan-ignore-next-line */
                 return $builder->withoutTrashed();
             }
