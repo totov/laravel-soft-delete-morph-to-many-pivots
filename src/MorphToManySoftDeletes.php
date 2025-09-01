@@ -30,32 +30,11 @@ class MorphToManySoftDeletes extends MorphToMany
     {
         parent::__construct(...func_get_args());
 
-        $query->macro('withoutTrashed', function (Builder $builder) {
-            $builder->withGlobalScope('morph_to_many_soft_deletes', function (Builder $builder) {
-                $builder->whereNull(
-                    $this->qualifyPivotColumn('deleted_at')
-                );
-            });
+        $query->macro('withoutTrashed', [$this, 'addWithoutTrashed']);
 
-            return $builder;
-        });
+        $query->macro('withTrashed', [$this, 'addWithTrashed']);
 
-        $query->macro('withTrashed', function (Builder $builder, bool $withTrashed = true) {
-            if (! $withTrashed) {
-                /** @phpstan-ignore-next-line */
-                return $builder->withoutTrashed();
-            }
-
-            return $builder->withoutGlobalScope('morph_to_many_soft_deletes');
-        });
-
-        $query->macro('onlyTrashed', function (Builder $builder) {
-            $builder->withoutGlobalScope('morph_to_many_soft_deletes')->whereNotNull(
-                $this->qualifyPivotColumn('deleted_at')
-            );
-
-            return $builder;
-        });
+        $query->macro('onlyTrashed', [$this, 'addOnlyTrashed']);
 
         /** @phpstan-ignore-next-line */
         $query->withoutTrashed();
@@ -107,6 +86,31 @@ class MorphToManySoftDeletes extends MorphToMany
         return $results;
     }
 
+    public function addWithoutTrashed(Builder $builder): Builder
+    {
+        $builder->withGlobalScope('morph_to_many_soft_deletes', function (Builder $builder) {
+            $builder->whereNull(
+                $this->qualifyPivotColumn('deleted_at')
+            );
+        });
+
+        return $builder;
+    }
+
+    public function addWithTrashed(Builder $builder): Builder
+    {
+        return $builder->withoutGlobalScope('morph_to_many_soft_deletes');
+    }
+
+    public function addOnlyTrashed(Builder $builder): Builder
+    {
+        $builder->withoutGlobalScope('morph_to_many_soft_deletes')->whereNotNull(
+            $this->qualifyPivotColumn('deleted_at')
+        );
+
+        return $builder;
+    }
+
     protected function performJoin($query = null)
     {
         $query = $query ?: $this->query;
@@ -116,32 +120,11 @@ class MorphToManySoftDeletes extends MorphToMany
         // model instance. Then we can set the "where" for the parent models.
         $query->join($this->table, $this->getQualifiedRelatedKeyName(), '=', $this->getQualifiedRelatedPivotKeyName());
 
-        $query->macro('withoutTrashed', function (Builder $builder) {
-            $builder->withGlobalScope('morph_to_many_soft_deletes', function (Builder $builder) {
-                $builder->whereNull(
-                    $this->qualifyPivotColumn('deleted_at')
-                );
-            });
+        $query->macro('withoutTrashed', [$this, 'addWithoutTrashed']);
 
-            return $builder;
-        });
+        $query->macro('withTrashed', [$this, 'addWithTrashed']);
 
-        $query->macro('withTrashed', function (Builder $builder, bool $withTrashed = true) {
-            if (! $withTrashed) {
-                /** @phpstan-ignore-next-line */
-                return $builder->withoutTrashed();
-            }
-
-            return $builder->withoutGlobalScope('morph_to_many_soft_deletes');
-        });
-
-        $query->macro('onlyTrashed', function (Builder $builder) {
-            $builder->withoutGlobalScope('morph_to_many_soft_deletes')->whereNotNull(
-                $this->qualifyPivotColumn('deleted_at')
-            );
-
-            return $builder;
-        });
+        $query->macro('onlyTrashed', [$this, 'addOnlyTrashed']);
 
         /** @phpstan-ignore-next-line */
         return $query->withoutTrashed();
