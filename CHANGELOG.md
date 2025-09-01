@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-soft-delete-morph-to-many-pivots` will be documented in this file.
 
+## Resolves phpstan issues. - 2025-09-01
+
+**Full Changelog**: https://github.com/totov/laravel-soft-delete-morph-to-many-pivots/compare/v1.0.8...v1.0.9
+
 ## v1.0.8 - 2025-09-01
 
 ### What's Changed
