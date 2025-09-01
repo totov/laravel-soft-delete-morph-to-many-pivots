@@ -143,6 +143,7 @@ class MorphToManySoftDeletes extends MorphToMany
             return $builder;
         });
 
+        /** @phpstan-ignore-next-line */
         return $query->withoutTrashed();
     }
 }
