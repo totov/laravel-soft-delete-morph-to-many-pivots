@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-soft-delete-morph-to-many-pivots` will be documented in this file.
 
+## v1.0.10 - 2025-11-24
+
+### What's Changed
+
+* Bumps available Laravel versions. by @totov in https://github.com/totov/laravel-soft-delete-morph-to-many-pivots/pull/19
+
+**Full Changelog**: https://github.com/totov/laravel-soft-delete-morph-to-many-pivots/compare/v1.0.9...v1.0.10
+
 ## Resolves phpstan issues. - 2025-09-01
 
 **Full Changelog**: https://github.com/totov/laravel-soft-delete-morph-to-many-pivots/compare/v1.0.8...v1.0.9
