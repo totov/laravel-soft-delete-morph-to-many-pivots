@@ -11,7 +11,7 @@ jobs:
         stability: [prefer-lowest, prefer-stable]
         include:
           - php: 8.2
-            laravel: 10.*
+            laravel: 11.*
             testbench: 8.*
             pest: 2.*
           - php: 8.3
