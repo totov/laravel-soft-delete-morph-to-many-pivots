@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-soft-delete-morph-to-many-pivots` will be documented in this file.
 
+## v2.0.0 - 2025-11-25
+
+### What's Changed
+
+* Fixes broken test suite. by @totov in https://github.com/totov/laravel-soft-delete-morph-to-many-pivots/pull/20
+
+**Full Changelog**: https://github.com/totov/laravel-soft-delete-morph-to-many-pivots/compare/v1.0.10...v2.0.0
+
 ## v1.0.10 - 2025-11-24
 
 ### What's Changed
