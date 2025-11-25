@@ -14,12 +14,15 @@ jobs:
           - php: 8.2
             laravel: 10.*
             testbench: 8.*
+            pest: 1.*
           - php: 8.3
             laravel: 11.*
             testbench: 9.*
+            pest: 2.*
           - php: 8.4
             laravel: 12.*
             testbench: 10.*
+            pest: 3.*
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
