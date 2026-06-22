@@ -44,8 +44,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "pestphp/pest:${{ matrix.pest }}" --no-interaction --no-update
-          composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "pestphp/pest:${{ matrix.pest }}" --no-interaction --no-update --dev
+          composer update --${{ matrix.stability }} --prefer-dist --no-interaction --dev
 
       - name: List Installed Dependencies
         run: composer show -D
