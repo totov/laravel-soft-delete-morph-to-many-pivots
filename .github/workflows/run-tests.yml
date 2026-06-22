@@ -12,23 +12,23 @@ jobs:
         stability: [prefer-lowest, prefer-stable]
         include:
           - php: 8.2
-            laravel: 11.*
-            testbench: 9.*
+            laravel: ~12.60
+            testbench: ~10.5
             pest: 3.*
           - php: 8.3
-            laravel: 11.*
-            testbench: 9.*
-            pest: 3.*
+            laravel: ~12.60
+            testbench: ~10.5
+            pest: 4.*
           - php: 8.4
-            laravel: 12.*
-            testbench: "^10.5"
+            laravel: ~12.60
+            testbench: ~10.5
             pest: 4.*
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -44,7 +44,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "pestphp/pest:${{ matrix.pest }}" --no-interaction --no-update
+          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "pestphp/pest:${{ matrix.pest }}" --no-interaction --no-update --dev
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
       - name: List Installed Dependencies
