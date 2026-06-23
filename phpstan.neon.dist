@@ -5,7 +5,7 @@ parameters:
     level: 4
     paths:
         - src
+        - tests/Fixtures/PHPStan/ModelWithMorphToManySoftDeletesTrait.php
     tmpDir: build/phpstan
     checkOctaneCompatibility: true
     checkModelProperties: true
-
