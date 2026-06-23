@@ -2,6 +2,22 @@
 
 All notable changes to `laravel-soft-delete-morph-to-many-pivots` will be documented in this file.
 
+## v2.0.1 - 2026-06-23
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.4.0 to 2.5.0 by @dependabot[bot] in https://github.com/totov/laravel-soft-delete-morph-to-many-pivots/pull/21
+* Bump ramsey/composer-install from 3 to 4 by @dependabot[bot] in https://github.com/totov/laravel-soft-delete-morph-to-many-pivots/pull/22
+* Bump stefanzweifel/git-auto-commit-action from 6 to 7 by @dependabot[bot] in https://github.com/totov/laravel-soft-delete-morph-to-many-pivots/pull/17
+* Allow manual triggering of run-tests workflow by @totov in https://github.com/totov/laravel-soft-delete-morph-to-many-pivots/pull/23
+* Bump actions/checkout from 5 to 6 by @dependabot[bot] in https://github.com/totov/laravel-soft-delete-morph-to-many-pivots/pull/18
+* Bump dependabot/fetch-metadata from 2.5.0 to 3.0.0 by @dependabot[bot] in https://github.com/totov/laravel-soft-delete-morph-to-many-pivots/pull/24
+* Bump dependabot/fetch-metadata from 3.0.0 to 3.1.0 by @dependabot[bot] in https://github.com/totov/laravel-soft-delete-morph-to-many-pivots/pull/25
+* Bump actions/checkout from 6 to 7 by @dependabot[bot] in https://github.com/totov/laravel-soft-delete-morph-to-many-pivots/pull/26
+* Improve MorphToManySoftDeletes PHPDoc by @totov in https://github.com/totov/laravel-soft-delete-morph-to-many-pivots/pull/27
+
+**Full Changelog**: https://github.com/totov/laravel-soft-delete-morph-to-many-pivots/compare/v2.0.0...v2.0.1
+
 ## v2.0.0 - 2025-11-25
 
 ### What's Changed
