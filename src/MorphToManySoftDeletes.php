@@ -7,9 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 /**
- * @method Builder withoutTrashed()
- * @method Builder withTrashed(bool $withTrashed = true)
- * @method Builder onlyTrashed()
+ * @method $this onlyTrashed()
+ * @method $this select(array<int|string, mixed>|string $columns = ['*'])
+ * @method $this selectRaw(string $expression, array<int|string, mixed> $bindings = [])
+ * @method $this where(\Closure|array<int|string, mixed>|string $column, mixed $operator = null, mixed $value = null, string $boolean = 'and')
+ * @method $this withTrashed(bool $withTrashed = true)
+ * @method $this withoutTrashed()
  */
 class MorphToManySoftDeletes extends MorphToMany
 {
