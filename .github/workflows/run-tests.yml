@@ -23,16 +23,16 @@ jobs:
             testbench: ~10.5
             pest: 4.*
           - php: 8.3
-            laravel: ^13.0
-            testbench: ^11.0
+            laravel: ~13.0
+            testbench: ~11.0
             pest: 4.*
           - php: 8.4
-            laravel: ^13.0
-            testbench: ^11.0
+            laravel: ~13.0
+            testbench: ~11.0
             pest: 4.*
           - php: 8.5
-            laravel: ^13.0
-            testbench: ^11.0
+            laravel: ~13.0
+            testbench: ~11.0
             pest: 4.*
 
     name: P${{ matrix.dependencies.php }} - L${{ matrix.dependencies.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
