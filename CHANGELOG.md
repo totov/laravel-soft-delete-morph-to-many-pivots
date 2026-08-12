@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-soft-delete-morph-to-many-pivots` will be documented in this file.
 
+## v2.1.0 - 2026-08-12
+
+### What's Changed
+
+* Add Laravel 13 support by @totov in https://github.com/totov/laravel-soft-delete-morph-to-many-pivots/pull/28
+
+**Full Changelog**: https://github.com/totov/laravel-soft-delete-morph-to-many-pivots/compare/v2.0.1...v2.1.0
+
 ## v2.0.1 - 2026-06-23
 
 ### What's Changed
