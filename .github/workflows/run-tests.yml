@@ -8,9 +8,8 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
-        php: [8.4, 8.3, 8.2]
         stability: [prefer-lowest, prefer-stable]
-        include:
+        dependencies:
           - php: 8.2
             laravel: ~12.60
             testbench: ~10.5
@@ -23,8 +22,20 @@ jobs:
             laravel: ~12.60
             testbench: ~10.5
             pest: 4.*
+          - php: 8.3
+            laravel: ~13.0
+            testbench: ~11.0
+            pest: 4.*
+          - php: 8.4
+            laravel: ~13.0
+            testbench: ~11.0
+            pest: 4.*
+          - php: 8.5
+            laravel: ~13.0
+            testbench: ~11.0
+            pest: 4.*
 
-    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
+    name: P${{ matrix.dependencies.php }} - L${{ matrix.dependencies.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
     steps:
       - name: Checkout code
@@ -33,7 +44,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php }}
+          php-version: ${{ matrix.dependencies.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
           coverage: none
 
@@ -44,7 +55,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "pestphp/pest:${{ matrix.pest }}" --no-interaction --no-update --dev
+          composer require "laravel/framework:${{ matrix.dependencies.laravel }}" "orchestra/testbench:${{ matrix.dependencies.testbench }}" "pestphp/pest:${{ matrix.dependencies.pest }}" --no-interaction --no-update --dev
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
       - name: List Installed Dependencies
